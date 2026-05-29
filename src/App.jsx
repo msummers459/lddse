@@ -207,7 +207,6 @@ ${patientName?`<div style="font-size:14px;font-weight:700;margin-bottom:10px;">$
   <div class="mc"><label>LVOT Area</label><span>${lvotDiameter?fmt(Math.PI*Math.pow(parseFloat(lvotDiameter)/2,2),3):"—"} cm²</span></div>
   <div class="mc"><label>BSA</label><span>${bsa?fmt(parseFloat(bsa),2):"—"} m²</span></div>
   <div class="mc"><label>Ht / Wt</label><span>${height&&weight?`${height}${hwUnits==="imperial"?" in":" cm"} / ${weight}${hwUnits==="imperial"?" lb":" kg"}${hwUnits==="imperial"?` (${fmt(p(height)*2.54,1)}cm / ${fmt(p(weight)*0.453592,1)}kg)`:""}`:"-"}</span></div>
-  <div class="mc"><label>Stages</label><span>${filled.length} / ${STAGES.length}</span></div>
   <div class="mc"><label>Contractile Reserve</label>
     <span style="color:${crPresent===true?"#34C759":crPresent===false?"#FF3B30":"#8E8E93"}">${crPresent===null?"—":crPresent?"Present ≥20%":"Absent <20%"}</span></div>
 </div>
@@ -234,7 +233,10 @@ ${patientName?`<div style="font-size:14px;font-weight:700;margin-bottom:10px;">$
     <div class="sbox">
       <div class="sr"><span class="sl">Baseline SV</span><span class="sv">${fmt(baseSV,1)} mL</span></div>
       <div class="sr"><span class="sl">Peak SV</span><span class="sv">${fmt(peakSV,1)} mL</span></div>
-      <div class="sr"><span class="sl">SV Augmentation</span><span class="sv">${svAug}</span></div>
+      <div class="sr"><span class="sl">SV Augmentation</span><span class="sv" style="color:${baseSV&&peakSV&&((peakSV-baseSV)/baseSV)*100>=20?"#34C759":"inherit"}">${svAug}${baseSV&&peakSV?` &nbsp;<span style="font-weight:400;color:#6E6E73;">(${fmt(baseSV,1)} → ${fmt(peakSV,1)} mL)</span>`:""}</span></div>
+      <div class="sr"><span class="sl">Baseline Flow Rate</span><span class="sv">${fmt(baseFlow,0)} mL/s</span></div>
+      <div class="sr"><span class="sl">Peak Flow Rate</span><span class="sv">${fmt(peakFlowForProj,0)} mL/s</span></div>
+      <div class="sr"><span class="sl">Flow Augmentation</span><span class="sv" style="color:${flowAugPct!==null&&flowAugPct>=15?"#34C759":flowAugPct!==null?"#FF3B30":"inherit"}">${flowAugPct!==null?fmt(flowAugPct,0)+"%":"—"}${baseFlow&&peakFlowForProj?` &nbsp;<span style="font-weight:400;color:#6E6E73;">(${fmt(baseFlow,0)} → ${fmt(peakFlowForProj,0)} mL/s)</span>`:""}</span></div>
       <div class="sr"><span class="sl">Baseline SVI</span><span class="sv" style="color:${results.baseline.svi&&results.baseline.svi<35?"#FF3B30":"inherit"}">${fmt(results.baseline.svi,1)} mL/m²${results.baseline.svi&&results.baseline.svi<35?" — Low Flow":""}</span></div>
       <div class="sr"><span class="sl">Baseline AVA</span><span class="sv">${fmt(results.baseline.ava,2)} cm²</span></div>
       <div class="sr"><span class="sl">Peak AVA</span><span class="sv" style="color:${peakAVAVal>1?"#34C759":peakAVAVal>0?"#FF3B30":"inherit"}">${peakAVAVal>0?fmt(peakAVAVal,2):"—"} cm²</span></div>
