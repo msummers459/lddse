@@ -230,7 +230,7 @@ ${patientName?`<div style="font-size:14px;font-weight:700;margin-bottom:10px;">$
 
 <div class="two">
   <div>
-    <h2 style="margin-top:10px;">Haemodynamic Summary</h2>
+    <h2 style="margin-top:10px;">Hemodynamic Summary</h2>
     <div class="sbox">
       <div class="sr"><span class="sl">Baseline SV</span><span class="sv">${fmt(baseSV,1)} mL</span></div>
       <div class="sr"><span class="sl">Peak SV</span><span class="sv">${fmt(peakSV,1)} mL</span></div>
@@ -239,12 +239,7 @@ ${patientName?`<div style="font-size:14px;font-weight:700;margin-bottom:10px;">$
       <div class="sr"><span class="sl">Baseline AVA</span><span class="sv">${fmt(results.baseline.ava,2)} cm²</span></div>
       <div class="sr"><span class="sl">Peak AVA</span><span class="sv" style="color:${peakAVAVal>1?"#34C759":peakAVAVal>0?"#FF3B30":"inherit"}">${peakAVAVal>0?fmt(peakAVAVal,2):"—"} cm²</span></div>
     </div>
-    <div class="pbox">
-      <h3>Positive Result Criteria</h3>
-      <div class="pi"><span class="pn">1.</span><span><strong>AVA &gt;1.0 cm²</strong> at any flow → pseudo-severe AS</span></div>
-      <div class="pi"><span class="pn">2.</span><span><strong>Vmax &gt;4 m/s or ΔP̄ &gt;40 mmHg</strong> with AVA &lt;1.0 cm² → true severe AS</span></div>
-      <div class="pi"><span class="pn">3.</span><span><strong>Absent contractile reserve</strong> (SV &lt;20%): high surgical risk; AVR may still benefit LV</span></div>
-    </div>
+
   </div>
   <div>${interpHTML}</div>
 </div>
@@ -846,9 +841,9 @@ export default function App(){
       <div className="sec">
         <div className="sec-title">Protocol Summary</div>
 
-        {/* Haemodynamic Overview table */}
+        {/* Hemodynamic Overview table */}
         <div className="sum-card" style={{marginBottom:14}}>
-          <div className="sum-title">Haemodynamic Overview</div>
+          <div className="sum-title">Hemodynamic Overview</div>
           <table className="ov-table">
             <thead>
               <tr>
@@ -1065,7 +1060,7 @@ export default function App(){
                     {avaProjClass==="not-severe"  && "AVAProj > 1.5 cm² — Pseudo-Severe or Mild AS"}
                   </div>
                   <div style={{fontSize:12,color:"var(--label)",lineHeight:1.65}}>
-                    {avaProjClass==="true-severe" && "Projected AVA ≤1.0 cm² (or indexed ≤0.6 cm²/m²) at a normalised flow of 250 mL/s confirms true-severe aortic stenosis. AVR is likely reasonable. This finding is consistent with fixed obstruction that would remain haemodynamically significant at normal flow."}
+                    {avaProjClass==="true-severe" && "Projected AVA ≤1.0 cm² (or indexed ≤0.6 cm²/m²) at a normalised flow of 250 mL/s confirms true-severe aortic stenosis. AVR is likely reasonable. This finding is consistent with fixed obstruction that would remain hemodynamically significant at normal flow."}
                     {avaProjClass==="moderate"    && "Projected AVA 1.0–1.5 cm² at normalised flow confirms the obstruction is in the moderate range. The severe appearance at rest was flow-dependent. Continued surveillance is appropriate; AVR is not indicated on severity grounds alone."}
                     {avaProjClass==="not-severe"  && "Projected AVA >1.5 cm² at normalised flow suggests the aortic stenosis is not truly severe. The low AVA and gradient at rest are likely explained by low transvalvular flow. AVR is not indicated on severity grounds alone."}
                   </div>
